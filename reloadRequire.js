@@ -1,22 +1,18 @@
 
 /**
- * @param {string} oldPath
- * @param {string} newPath
- * @return {Object} require(newPath)
+ * @param {string} path
+ * @return {Object} require(path)
  */
-function reload(oldPath, newPath) {
-	if (typeof(newPath) !== 'string') {
-		throw new TypeError('newPath is not string.');
-	}
-	if (typeof(oldPath) !== 'string') {
-		throw new TypeError('oldPath is not string.');
+function reload(path) {
+	if (typeof(path) !== 'string') {
+		throw new TypeError('path is not string.');
 	}
 	try {
-		delete require.cache[require.resolve(oldPath)];
+		delete require.cache[require.resolve(path)];
 	} catch(err) {
 		console.log(err);
 	} finally {
-		return require(newPath);
+		return require(path);
 	}
 }
 
